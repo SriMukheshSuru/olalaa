@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Adjust as needed
+      - main
 
 jobs:
   build:
@@ -22,15 +22,12 @@ jobs:
         run: |
           cd frontend
           npm install
-          # Install missing Babel plugin
           npm install --save-dev @babel/plugin-proposal-private-property-in-object
-          # Update Browserslist database
           npx update-browserslist-db@latest
 
       - name: Build frontend
         run: |
           cd frontend
-          # Disable CI mode to prevent treating warnings as errors
           CI='' npm run build
 
       - name: Deploy to GitHub Pages
